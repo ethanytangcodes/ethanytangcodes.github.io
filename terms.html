@@ -1,201 +1,310 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Use - ethanytangcodes.github.io</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Terms of Use — ethanytangcodes.github.io</title>
+<meta name="generator" content="Author: Ethan Tang" />
 <style>
-  body {
-    font-family: "Poppins", sans-serif;
-    background-color: #0d1117;
-    color: #e6edf3;
-    margin: 0;
-    padding: 40px 20px;
-    line-height: 1.7;
-    scroll-behavior: smooth;
-  }
-  h1, h2, h3 {
-    color: #58a6ff;
-  }
-  h1 {
-    font-size: 28px;
-    margin-bottom: 15px;
-  }
-  h2 {
-    font-size: 22px;
-    margin-top: 35px;
-    margin-bottom: 10px;
-  }
-  h3 {
-    font-size: 18px;
-    margin-top: 25px;
-    margin-bottom: 6px;
-  }
-  p, ul {
-    max-width: 900px;
-  }
-  ul li {
-    margin-bottom: 6px;
-  }
-  a {
-    color: #2dd4bf;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  .container {
-    max-width: 950px;
-    margin: auto;
-    position: relative;
-  }
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
-  button {
-    background-color: #238636;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.2s ease;
-  }
-  button:hover {
-    background-color: #2ea043;
-  }
-  #topBtn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #1f6feb;
-    border-radius: 50px;
-    padding: 12px 18px;
-    font-size: 15px;
-    display: none;
-  }
-  #topBtn:hover {
-    background-color: #388bfd;
-  }
-  footer {
-    margin-top: 40px;
-    font-size: 14px;
-    color: #8b949e;
-    border-top: 1px solid #2d333b;
-    padding-top: 15px;
-  }
+:root{
+  --bg:#ffffff;
+  --paper:#fbfbfb;
+  --text:#111827;
+  --muted:#4b5563;
+  --accent:#0b5fff;
+  --border:#e6e9ee;
+  --maxw:1000px;
+  --pad:28px;
+  --serif: "Georgia", "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--text);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+  padding:36px 20px;
+  display:flex;
+  justify-content:center;
+}
+.sheet{
+  width:100%;
+  max-width:var(--maxw);
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:var(--pad);
+  box-shadow:0 6px 24px rgba(17,24,39,0.06);
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:18px;
+}
+.brand{
+  display:flex;
+  gap:14px;
+  align-items:baseline;
+}
+.brand .title{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:700;
+  color:var(--text);
+  margin:0;
+}
+.meta{
+  color:var(--muted);
+  font-size:13px;
+}
+.controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.btn{
+  background:transparent;
+  border:1px solid var(--border);
+  padding:8px 12px;
+  border-radius:6px;
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:600;
+  font-size:13px;
+  cursor:pointer;
+}
+.btn:hover{background:rgba(11,95,255,0.04)}
+main{
+  margin-top:8px;
+}
+h1{font-family:var(--serif);font-size:28px;margin:0 0 6px 0}
+h2{font-family:var(--serif);font-size:18px;margin:28px 0 8px 0;color:var(--text)}
+h3{font-size:15px;margin:16px 0 6px 0;color:var(--text)}
+p{margin:12px 0;color:var(--text)}
+small{color:var(--muted);font-size:13px}
+ul{margin:8px 0 12px 20px}
+li{margin-bottom:8px}
+.section{padding-bottom:6px;border-bottom:1px solid #f3f4f6;margin-bottom:18px}
+.definitions{background:#fbfcfe;padding:14px;border-radius:6px;border:1px solid #f2f6fb}
+.muted{color:var(--muted)}
+footer{
+  margin-top:26px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:13px;
+}
+#topBtn, #homeBtn{
+  position:fixed;
+  top:22px;
+  padding:10px 14px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  cursor:pointer;
+  display:block;
+  box-shadow:0 6px 20px rgba(17,24,39,0.06);
+  font-weight:700;
+  color:var(--accent);
+  z-index:999;
+}
+#topBtn{right:22px}
+#homeBtn{right:120px}
+@media (max-width:720px){
+  .sheet{padding:18px}
+  h1{font-size:22px}
+}
+pre{background:#f7f9fb;padding:10px;border-radius:6px;overflow:auto;border:1px solid #eef3fa}
 </style>
 </head>
 <body>
-
-<div class="container" id="top">
-  <div class="buttons">
-    <button onclick="window.location.href='/'">← Back to Home</button>
+<div class="sheet" id="top">
+<header>
+  <div class="brand" aria-hidden="false">
+    <div>
+      <h1>Terms of Use</h1>
+      <div class="meta">ethanytangcodes.github.io — Effective Date: November 7, 2025</div>
+    </div>
   </div>
+  <div class="controls" role="navigation" aria-label="Top controls">
+    <button class="btn" id="printBtn" onclick="window.print()" title="Print this page">Print</button>
+  </div>
+</header>
+<main>
 
-  <h1>Terms of Use</h1>
-  <p><strong>Effective Date:</strong> November 7, 2025</p>
-  <p>By accessing or using <strong>ethanytangcodes.github.io</strong>, you automatically agree to the following Terms of Use. If you do not agree, you must leave the site immediately.</p>
+<!-- Section 1 -->
+<section class="section" id="section-1">
+<h2>1. Purpose, Scope, and Definitions</h2>
+<p>This document sets forth the Terms of Use ("<strong>Terms</strong>") under which the website <strong>ethanytangcodes.github.io</strong> (the "<strong>Site</strong>") is offered by its operator, <strong>Ethan Tang</strong> (the "<strong>Operator</strong>"). These Terms apply to all visitors, users, browsers, agents, and any other party that accesses or interacts with the Site in any manner (each a "<strong>User</strong>").</p>
+<div class="definitions" aria-labelledby="definitions-heading">
+<h3 id="definitions-heading">Definitions</h3>
+<ul>
+<li><strong>"Site"</strong> — the website located at <em>ethanytangcodes.github.io</em> and all content, pages, files, services, and features made available therefrom.</li>
+<li><strong>"Operator"</strong> — the individual or entity that operates the Site, currently and solely <strong>Ethan Tang</strong>.</li>
+<li><strong>"User"</strong> — any person or entity that accesses, views, interacts with, downloads from, or otherwise uses the Site for any purpose.</li>
+<li><strong>"Content"</strong> — all text, images, code, examples, tutorials, downloads, design elements, and other materials published or made available on the Site, whether original or sourced from third parties with license.</li>
+<li><strong>"Unauthorized Activity"</strong> — any use of the Site that contravenes these Terms, applicable law, or accepted digital conduct, including but not limited to hacking, scraping, unauthorized copying, and redistributing content without attribution.</li>
+<li><strong>"Redistribution"</strong> — public sharing, copying, reposting, or otherwise making Content available to persons or systems beyond the direct consumption by a User; redistribution requires attribution as described herein.</li>
+<li><strong>"You" or "Your"</strong> — references to the User accessing or using the Site.</li>
+</ul>
+</div>
+<p class="muted">These definitions clarify terms used throughout these Terms and will control their interpretation unless explicitly stated otherwise.</p>
+<p><em>Elaboration:</em> By defining terms thoroughly, the Operator ensures that Users clearly understand rights, responsibilities, and limitations before accessing the Site. This reduces misunderstandings and clarifies the scope of the agreement.</p>
+</section>
 
-  <h2>1. Purpose of This Site</h2>
-  <p>This website is operated by <strong>Ethan Tang</strong> as an educational, non-commercial platform for personal development, coding practice, and resource sharing. The content is designed solely for learning and informational purposes.</p>
+<!-- Section 2 -->
+<section class="section" id="section-2">
+<h2>2. Acceptance; Binding Agreement; Automatic Consent</h2>
+<p>By accessing, browsing, or otherwise using the Site, you acknowledge that you have read, understood, and agree to be bound by these Terms. Access constitutes explicit and automatic acceptance of these Terms without further action. If you do not agree with any part, you must immediately leave the Site and discontinue all use.</p>
+<p><em>Elaboration:</em> Even minimal interaction—such as clicking a link, viewing content, or downloading materials—implies acceptance. This paragraph emphasizes that the act of accessing the Site itself forms a binding agreement.</p>
+</section>
 
-  <h2>2. Acceptance of Terms</h2>
-  <p>Accessing, browsing, or using any part of this site constitutes full acceptance of these Terms. Continued use signifies ongoing agreement to any updates or modifications made by the site operator. These Terms form a binding legal agreement between you and Ethan Tang.</p>
+<!-- Section 3 -->
+<section class="section" id="section-3">
+<h2>3. Permitted Uses; License Grant</h2>
+<p>Subject to compliance with these Terms, the Operator grants a limited, non-exclusive, revocable, non-transferable license to view, read, and otherwise use Content for personal, educational, and non-commercial purposes.</p>
+<h3>Redistribution with Credit</h3>
+<p>You may redistribute Content provided that you give credit to "<strong>Ethan Tang</strong>", include a visible link to the Site when practical, and do not imply endorsement or remove legal notices.</p>
+<p><em>Elaboration:</em> Redistribution must always respect intellectual property rights and proper attribution ensures legal and ethical compliance. Users should exercise care when incorporating Content into other materials or platforms.</p>
+</section>
 
-  <h2>3. Automatic Agreement & User Responsibility</h2>
-  <p>By entering this site, you accept all responsibilities for your actions, decisions, and use of the website. You acknowledge that Ethan Tang is not liable for:</p>
-  <ul>
-    <li>Disciplinary or administrative action at school, work, or other institutions.</li>
-    <li>Legal consequences resulting from misuse or violation of local, state, or national laws.</li>
-    <li>Technical issues, data loss, or interruptions in site functionality.</li>
-  </ul>
-  <p>You agree to use this site ethically, lawfully, and responsibly. Any attempt to circumvent rules, access restricted areas, hack, or alter the site content is strictly prohibited and your sole responsibility.</p>
+<!-- Section 4 -->
+<section class="section" id="section-4">
+<h2>4. Prohibited Conduct; Unauthorized Activity</h2>
+<p>Users must not, and must not permit others to:</p>
+<ul>
+<li>Overload Site infrastructure via automated tools or mass downloads;</li>
+<li>Access restricted areas without authorization;</li>
+<li>Reverse engineer code or circumvent security;</li>
+<li>Upload malicious files;</li>
+<li>Engage in unlawful or harmful activities.</li>
+</ul>
+<p><em>Elaboration:</em> This section protects the integrity, performance, and security of the Site, emphasizing that unauthorized activity can result in legal consequences or technical restrictions.</p>
+<p><em>Extra clarification:</em> Even if a User claims ignorance, responsibility for actions lies entirely with the User. Operator will not be liable for violations or misuse.</p>
+</section>
 
-  <h2>4. Use Restrictions</h2>
-  <p>Users are prohibited from:</p>
-  <ul>
-    <li>Disrupting or damaging the site or its servers.</li>
-    <li>Uploading malicious code, viruses, or scripts.</li>
-    <li>Collecting information about other users.</li>
-    <li>Engaging in harassment, cyberbullying, or illegal activity.</li>
-    <li>Violating copyright, trademark, or other intellectual property rights.</li>
-    <li>Reproducing site content commercially without permission.</li>
-  </ul>
+<!-- Section 5 -->
+<section class="section" id="section-5">
+<h2>5. Intellectual Property and Copyright</h2>
+<p>All original Content is protected by copyright and other IP laws. Users acquire no ownership rights except as expressly granted.</p>
+<h3>Third-Party Materials</h3>
+<p>Content from third parties is governed by its respective licenses.</p>
+<h3>DMCA and Takedown Procedures</h3>
+<p>If you believe copyright is infringed, email <a href="mailto:ethantytang11@gmail.com">ethantytang11@gmail.com</a> with sufficient details. Operator responds to valid notices promptly.</p>
+<p><em>Elaboration:</em> Users should respect IP rights at all times. Unauthorized copying or publication could lead to removal of Content or legal action. The Operator acts as a facilitator and will take action when appropriately notified.</p>
+</section>
 
-  <h2>5. Intellectual Property</h2>
-  <p>All original content on this site, including but not limited to code, images, text, designs, and formats, are protected under copyright laws. Users may redistribute or share content only with proper credit to <strong>Ethan Tang</strong> and a link to <a href="https://ethanytangcodes.github.io">ethanytangcodes.github.io</a>. Claiming ownership or removing credit is prohibited.</p>
+<!-- Section 6 -->
+<section class="section" id="section-6">
+<h2>6. Cookies, Technical Data, and Analytics</h2>
+<p>The Site may automatically use cookies and collect technical and non-personally-identifying information about Users, their devices, and their interactions with the Site.</p>
+<ul>
+<li>IP address and approximate geolocation;</li>
+<li>browser type and version, operating system, and device type;</li>
+<li>pages visited, time and duration of visits, and click behavior;</li>
+<li>referring URLs and search queries that led to the Site.</li>
+</ul>
+<p><em>Elaboration:</em> This data helps improve the Site, maintain security, and provide general analytics. It is collected in a non-intrusive manner and does not personally identify Users without consent.</p>
+<p><em>Extra clarification:</em> By continuing to use the Site, you automatically consent to this data collection. The Operator is not responsible for external tracking outside the scope described.</p>
+</section>
 
-  <h2>6. Limitation of Liability</h2>
-  <p>Ethan Tang and any affiliates are not responsible for:</p>
-  <ul>
-    <li>Direct, indirect, incidental, or consequential damages arising from use of this site.</li>
-    <li>Loss of data, income, or profits resulting from misuse or technical errors.</li>
-    <li>Disciplinary, legal, or personal consequences due to improper use.</li>
-  </ul>
-  <p>Your only remedy is to stop using the site.</p>
+<!-- Section 7 -->
+<section class="section" id="section-7">
+<h2>7. User Representations, Warranties, and Acknowledgements</h2>
+<p>By using the Site you represent, warrant, and acknowledge that:</p>
+<ul>
+<li>you are at least the age of majority in your jurisdiction or have obtained parental/guardian permission to use the Site;</li>
+<li>you will comply with all applicable laws, policies, and third-party terms when using the Site;</li>
+<li>you will not submit content that is unlawful, defamatory, obscene, or that violates the rights of others;</li>
+<li>you accept that the Operator is not responsible for actions taken by you (including disciplinary actions by educational institutions or employers) that result from your use of the Site;</li>
+<li>you will indemnify and hold harmless the Operator as described below for violations of these representations or the Terms generally.</li>
+</ul>
+<p><em>Elaboration:</em> This ensures that Users understand they carry responsibility for compliance with laws and institutional rules. The Operator is a provider of Content, not a regulator or enforcer of third-party policies.</p>
+</section>
 
-  <h2>7. Disclaimer of Warranties</h2>
-  <p>This site and its content are provided “as is” without warranties of any kind, either express or implied. Ethan Tang does not guarantee uninterrupted access, accuracy, or suitability for any purpose. All use is at your own risk.</p>
+<!-- Section 8 -->
+<section class="section" id="section-8">
+<h2>8. Disclaimers; No Warranty</h2>
+<p>THE SITE AND CONTENT ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND. THE OPERATOR DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED.</p>
+<p><em>Elaboration:</em> Users rely on Content at their own risk. The Operator cannot guarantee that all information is error-free or continuously available. No warranty is made regarding accuracy, completeness, or usefulness for any particular purpose.</p>
+<p><em>Extra clarification:</em> This ensures that if a User experiences any issue, technical problem, or misunderstanding due to Content, the Operator will not be held liable.</p>
+</section>
 
-  <h2>8. Cookies and Technical Information</h2>
-  <p>This site may use cookies and collect technical information such as:</p>
-  <ul>
-    <li>Browser type and version</li>
-    <li>Device type and operating system</li>
-    <li>IP address and approximate location</li>
-    <li>Pages visited, clicks, and time spent on the site</li>
-  </ul>
-  <p>Collected information is used to maintain and improve site functionality. You consent to this data collection by using the site. No personal information is sold or shared beyond necessary technical services.</p>
+<!-- Section 9 -->
+<section class="section" id="section-9">
+<h2>9. Limitation of Liability; Remedies</h2>
+<p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE OPERATOR SHALL NOT BE LIABLE FOR INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR USE OF THE SITE.</p>
+<p><em>Elaboration:</em> This limitation emphasizes that the Operator is not financially or legally responsible for any indirect loss, including inconvenience, educational consequences, or other outcomes from using the Site.</p>
+<p><em>Extra clarification:</em> Users acknowledge that this limitation is fair and necessary to allow the Operator to provide Content freely without excessive legal risk.</p>
+</section>
 
-  <h2>9. Indemnification</h2>
-  <p>You agree to indemnify and hold harmless Ethan Tang from any claims, damages, liabilities, or expenses arising from your use, misuse, or violation of these Terms.</p>
+<!-- Section 10 -->
+<section class="section" id="section-10">
+<h2>10. Indemnification</h2>
+<p>You agree to defend, indemnify, and hold harmless the Operator from claims arising out of your use of the Site or violation of these Terms.</p>
+<p><em>Elaboration:</em> This protects the Operator from legal or financial responsibility caused by your actions. Users assume full liability for their conduct while interacting with the Site.</p>
+</section>
 
-  <h2>10. Termination of Access</h2>
-  <p>Ethan Tang reserves the right to restrict, suspend, or terminate your access at any time, with or without notice, for violations of these Terms, security risks, or other reasons deemed necessary by the site operator.</p>
+<!-- Section 11 -->
+<section class="section" id="section-11">
+<h2>11. Termination and Suspension</h2>
+<p>The Operator may suspend, limit, or terminate access to the Site at any time for violation of Terms, unauthorized activity, or operational reasons.</p>
+<p><em>Elaboration:</em> Suspension does not require notice. Users are responsible for following these Terms to maintain access. Termination is final for the offending User account or access point.</p>
+</section>
 
-  <h2>11. Governing Law and Arbitration</h2>
-  <p>These Terms are governed by the laws of the State of California, USA. Any dispute shall be resolved under California jurisdiction or binding arbitration in accordance with federal and state laws.</p>
+<!-- Section 12 -->
+<section class="section" id="section-12">
+<h2>12. Governing Law; Dispute Resolution; Arbitration</h2>
+<p>These Terms are governed by California law. Disputes should be resolved through good faith negotiation, then binding arbitration if needed.</p>
+<p><em>Elaboration:</em> Arbitration avoids prolonged legal proceedings, saving time and expense for both parties. Class actions or representative claims are waived. Users agree to comply with this resolution method.</p>
+</section>
 
-  <h2>12. Updates and Modifications</h2>
-  <p>These Terms may be updated or modified at any time without notice. Continued use of the site indicates acceptance of all updated Terms.</p>
+<!-- Section 13 -->
+<section class="section" id="section-13">
+<h2>13. Miscellaneous Provisions (Elaborations, Examples, and Clarifications)</h2>
+<p>These clarifications reduce ambiguity and illustrate how these Terms apply in plausible scenarios.</p>
+<!-- Subsections with extra mini-paragraphs after each -->
+<h3>13.1. Educational Environment and School Reporting</h3>
+<p>If a User accesses the Site from a school network, compliance with local policies is required. Operator is not responsible for disciplinary actions.</p>
+<p><em>Elaboration:</em> Even if Content is purely informational, Users must exercise personal responsibility in institutional environments.</p>
+</section>
 
-  <h2>13. Severability</h2>
-  <p>If any provision of these Terms is found invalid or unenforceable, the remaining provisions remain fully effective and enforceable.</p>
+<!-- Section 14 and 15 -->
+<section class="section" id="section-14">
+<h2>14. Notices and Contact Information</h2>
+<p>All notices to the Operator should be sent via email to:</p>
+<pre>ethantytang11@gmail.com</pre>
+<p><em>Elaboration:</em> Clear communication ensures prompt resolution of disputes or inquiries.</p>
+</section>
 
-  <h2>14. Miscellaneous</h2>
-  <p>Users acknowledge that:</p>
-  <ul>
-    <li>The site is provided for educational and personal purposes only.</li>
-    <li>Ethan Tang is not responsible for user behavior outside the site or consequences arising from misuse.</li>
-    <li>By using the site, you waive any claim against Ethan Tang for any issues resulting from your own actions.</li>
-    <li>Redistribution with proper credit is allowed; commercial exploitation without permission is not.</li>
-  </ul>
+<section class="section" id="section-15">
+<h2>15. Effective Date; Changes to These Terms</h2>
+<p>Effective date: November 7, 2025. Continued use after updates constitutes acceptance.</p>
+<p><em>Elaboration:</em> Users should review Terms periodically to stay informed of any changes or clarifications.</p>
+</section>
 
-  <footer>
-    <p><strong>Contact:</strong> Ethan Tang — San Jose, California 95129 — <a href="mailto:ethantytang11@gmail.com">ethantytang11@gmail.com</a></p>
-    <p>&copy; 2025 Ethan Tang. All rights reserved.</p>
-  </footer>
+<footer>
+<p><strong>Summary:</strong> By using ethanytangcodes.github.io you accept these Terms, take responsibility for your own actions, and agree that the Operator is not liable for misuse or consequences. Share Content responsibly with credit. Contact <a href="mailto:ethantytang11@gmail.com">ethantytang11@gmail.com</a> for inquiries.</p>
+<p>&copy; 2025 <strong>Ethan Tang</strong>. All rights reserved.</p>
+</footer>
+</main>
 </div>
 
-<button id="topBtn" onclick="scrollToTop()">↑ Back to Top</button>
+<button id="topBtn" aria-label="Back to top">↑ Top</button>
+<a id="homeBtn" class="btn" href="/" title="Back to Home">← Home</a>
 
 <script>
-  const topBtn = document.getElementById("topBtn");
-  window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-      topBtn.style.display = "block";
-    } else {
-      topBtn.style.display = "none";
-    }
-  };
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', () => {
+  topBtn.style.display = 'block'; // always visible
+});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 </script>
-
 </body>
 </html>
