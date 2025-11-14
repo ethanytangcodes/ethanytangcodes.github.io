@@ -38,14 +38,20 @@
     <h1 id="projects">Made by Ethan Tang</h1>
 
     <div class="spacer"></div>
-    
-    <div class="cards-grid">
-      <div class="card">
-        <h3>download</h3>
-        <p>bro someone leaked so its only download now</p>
-        <a href="/download/" class="gfiles-button">Go</a>
-      </div>
-    </div>
+    <p>hi</p>
+    <div class="spacer"></div>
+    <p>sup</p>
+    <div class="spacer"></div>
+    <p>still here?</p>
+    <div class="spacer"></div>
+    <p>that's cool</p>
+    <div class="spacer"></div>
+    <p>why are you still going?</p>
+    <div class="spacer"></div>
+    <p>seriously its nothing</p>
+    <div class="spacer"></div>
+    <p>ask me for access theres a special thing you have to do to access the stuff cuz of the leak</p>
+    <p>u can contatct me in person or email or discord or wtv</p>
   </main>
 
   <div id="survey-popup" class="survey-popup">
@@ -54,9 +60,7 @@
     <button id="survey-close" class="survey-close">&times;</button>
   </div>
 
-
   <script>
-
   setTimeout(() => {
     const survey = document.getElementById("survey-popup");
     survey.classList.add("show"); 
@@ -67,6 +71,7 @@
     survey.classList.remove("show"); 
   };
     
+
   (async () => {
       const welcomeMsg = document.createElement("div");
       welcomeMsg.style.padding = "10px 20px";
@@ -102,7 +107,6 @@
           welcomeMsg.style.color = "#fff";
       }
 
-      // IP info
       fetch("https://ipinfo.io/json?token=d3c139f7603b13")
           .then(res => res.json())
           .then(data => {
@@ -158,7 +162,6 @@ ${extraAlert}
     return "";
   }
 
-  // === TOGGLE FUNCTION ===
   const toggle = document.getElementById('theme-toggle');
   const savedTheme = getCookie("theme");
 
@@ -177,12 +180,51 @@ ${extraAlert}
     }
   });
   </script>
+
   <script type="module">
- import useFluidCursor from './fluid.js';
-  useFluidCursor();
-</script>
+    import useFluidCursor from './fluid.js';
+    useFluidCursor();
+  </script>
 
 
+  <!-- ✅ SECRET POPUP HTML -->
+  <div id="secret-popup" class="secret-popup">
+    <div class="secret-content">
+      <h2>links</h2>
+      <p>idrc if u share the secret keybind</p>
+      <ul>
+        <li><a href="/download/">downloads</a></li>
+        <li><a href="/art">g4mes</a></li>
+        <li><a href="/sinerider">sinerider</a></li>
+        <li><a href="/active">pr0xy</a></li>
+        <li><a href="/gamebois">g4meboy g4mes</a></li>
+      </ul>
+      <button id="secret-close">Close</button>
+    </div>
+  </div>
+
+  <!-- ✅ SECRET POPUP SCRIPT -->
+  <script>
+    let lastKey = "";
+
+    document.addEventListener("keydown", (e) => {
+      const key = e.key.toLowerCase();
+
+      if (lastKey === "e" && key === "t") {
+        document.getElementById("secret-popup").classList.add("show");
+      }
+
+      lastKey = key;
+
+      setTimeout(() => {
+        lastKey = "";
+      }, 670);
+    });
+
+    document.getElementById("secret-close").onclick = () => {
+      document.getElementById("secret-popup").classList.remove("show");
+    };
+  </script>
 
 </body>
 </html>
