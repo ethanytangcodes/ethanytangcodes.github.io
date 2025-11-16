@@ -158,9 +158,9 @@ const users = [
   { username: "bobo0412", password: "himynameisxinyazhang" },
   { username: "lilac3cat", password: "372763" },
   { username: "hi", password: "hellohitler" },
-  { username: "wenyao", password: "1234" }
-  { username: "ReionRXx", password: "libryan901" }
-  { username: "wbwlee7@gmail.com", password: "password" }
+  { username: "wenyao", password: "1234" },
+  { username: "ReionRXx", password: "libryan901" },
+  { username: "wbwlee7@gmail.com", password: "password" },
   {{ username: "fiberglass", password: "#1Behemoth" }
 ];
 
@@ -205,7 +205,7 @@ okBtn.onclick = () => {
     sendLoginWebhook(found.username);
 
     document.getElementById('loginModal').classList.add('fadeOut');
-    setTimeout(() => window.location.href = "/active", 300);
+    window.location.href = "/active";
   }
 };
 
