@@ -37,6 +37,9 @@
     <a href="/terms.html" class="gfiles-button">terms of service</a>
     <a href="https://hits.sh/ethanytangcodes.github.io/"><img alt="Hits" src="https://hits.sh/ethanytangcodes.github.io.svg"/></a>
     <h1 id="projects">Made by Ethan Tang</h1>
+    <div class="spacer"></div>
+    <a href="/cosmos" class="gfiles-button">cosmos link</a>
+    <button class="gfiles-button" id="do-not-click-btn">DO NOT CLICK BY ANY MEANS</button>
   </main>
 
   <div id="survey-popup" class="survey-popup">
@@ -184,6 +187,16 @@ ${extraAlert}
     </div>
   </div>
 
+  <!-- DO NOT CLICK POPUP -->
+  <div id="do-not-click-popup" class="do-not-click-popup">
+    <div class="do-not-click-content">
+      <h2>wow.</h2>
+      <p id="click-message">Loading...</p>
+      <p>make sure not to tell your friends</p>
+      <button id="do-not-click-close">Close</button>
+    </div>
+  </div>
+
   <!-- ✅ SECRET POPUP SCRIPT -->
   <script>
     let lastKey = "";
@@ -205,6 +218,61 @@ ${extraAlert}
     document.getElementById("secret-close").onclick = () => {
       document.getElementById("secret-popup").classList.remove("show");
     };
+  </script>
+
+  <!-- DO NOT CLICK SCRIPT -->
+  <script>
+    const doNotClickBtn = document.getElementById("do-not-click-btn");
+    const doNotClickPopup = document.getElementById("do-not-click-popup");
+    const doNotClickClose = document.getElementById("do-not-click-close");
+    const clickMessage = document.getElementById("click-message");
+
+    const COUNTER_API_KEY = 'ut_F1lc7HwQPIgs9m7LGFP4CkP3cqHizWySKF7SBpNV';
+
+    doNotClickBtn.addEventListener("click", async () => {
+      try {
+        // Increment counter using counterapi.dev
+        const response = await fetch("https://api.counterapi.dev/v2/ethanytangcodess-team-2423/first-counter-2423/up", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${COUNTER_API_KEY}`
+          }
+        });
+        
+        const data = await response.json();
+        
+        // The response should contain the new count value
+        const count = data.count || data.value || 1;
+        
+        // Determine ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
+        let suffix = "th";
+        if (count % 100 < 11 || count % 100 > 13) {
+          switch (count % 10) {
+            case 1: suffix = "st"; break;
+            case 2: suffix = "nd"; break;
+            case 3: suffix = "rd"; break;
+          }
+        }
+        
+        clickMessage.textContent = `you are the ${count}${suffix} person to fall for it`;
+      } catch (error) {
+        console.error("Counter error:", error);
+        clickMessage.textContent = "you fell for it (couldn't load exact count)";
+      }
+      
+      doNotClickPopup.classList.add("show");
+    });
+
+    doNotClickClose.onclick = () => {
+      doNotClickPopup.classList.remove("show");
+    };
+
+    // Close when clicking outside
+    doNotClickPopup.addEventListener("click", (e) => {
+      if (e.target === doNotClickPopup) {
+        doNotClickPopup.classList.remove("show");
+      }
+    });
   </script>
 
 </body>
