@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Proxy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+:root {
+  --bg: #0f1220;
+  --panel: #161a30;
+  --text: #e8eaff;
+  --accent: #6c7cff;
+}
+
+[data-theme="light"] {
+  --bg: #f4f6ff;
+  --panel: #ffffff;
+  --text: #111;
+  --accent: #4a63ff;
+}
+
+[data-theme="midnight"] {
+  --bg: #05070d;
+  --panel: #0b1020;
+  --text: #dbe0ff;
+  --accent: #8aa2ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: var(--panel);
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+button, select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+}
+
+#tabs {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: var(--panel);
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: var(--accent);
+}
+
+iframe {
+  flex: 1;
+  border: none;
+  background: white;
+}
+</style>
+</head>
+
+<body data-theme="dark">
+<header>
+  <input id="url" placeholder="Enter URL (https://example.com)" />
+  <button onclick="openTab()">Go</button>
+  <select onchange="setTheme(this.value)">
+    <option value="dark">Dark</option>
+    <option value="light">Light</option>
+    <option value="midnight">Midnight</option>
+  </select>
+</header>
+
+<div id="tabs"></div>
+<iframe id="view"></iframe>
+
+<script>
+const workerBase = "https://YOUR-WORKER.workers.dev/?url=";
+
+let tabs = [];
+let active = -1;
+
+function openTab() {
+  const url = document.getElementById("url").value.trim();
+  if (!url) return;
+
+  tabs.push(url);
+  active = tabs.length - 1;
+  renderTabs();
+  load();
+}
+
+function renderTabs() {
+  const tabBar = document.getElementById("tabs");
+  tabBar.innerHTML = "";
+  tabs.forEach((url, i) => {
+    const t = document.createElement("div");
+    t.className = "tab" + (i === active ? " active" : "");
+    t.textContent = new URL(url).hostname;
+    t.onclick = () => {
+      active = i;
+      renderTabs();
+      load();
+    };
+    tabBar.appendChild(t);
+  });
+}
+
+function load() {
+  document.getElementById("view").src =
+    workerBase + encodeURIComponent(tabs[active]);
+}
+
+function setTheme(t) {
+  document.body.setAttribute("data-theme", t);
+}
+</script>
+</body>
+</html>
