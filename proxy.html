@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>nano.</title>
-<link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+<title>Cosmos Proxy</title>
+<link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -13,20 +16,22 @@
 }
 
 :root {
-  --bg: #0a0e27;
-  --surface: #141b3e;
-  --text: #e4e9ff;
-  --text-dim: #8b93c1;
-  --accent: #5b7fff;
-  --accent-hover: #7a93ff;
-  --border: #1f2847;
-  --shadow: rgba(0, 0, 0, 0.3);
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0f1419;
+  --bg-tertiary: #1a1f2e;
+  --text-primary: #e8edf4;
+  --text-secondary: #8b92a7;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-light: rgba(59, 130, 246, 0.1);
+  --border: rgba(59, 130, 246, 0.15);
+  --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -34,131 +39,173 @@ body {
 }
 
 .header {
-  background: var(--surface);
+  background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
-  padding: 12px 16px;
+  padding: 16px 24px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
+  backdrop-filter: blur(12px);
   z-index: 100;
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 20px;
-  font-weight: 600;
-  color: var(--text);
-  margin-right: 8px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-right: 12px;
+}
+
+.logo i {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+.search-container {
+  flex: 1;
+  position: relative;
+  max-width: 700px;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--text-secondary);
+  pointer-events: none;
 }
 
 .search-bar {
-  flex: 1;
-  position: relative;
-  max-width: 600px;
-}
-
-.search-bar input {
   width: 100%;
-  padding: 10px 16px;
-  background: var(--bg);
+  padding: 14px 16px 14px 48px;
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 14px;
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 15px;
   outline: none;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', sans-serif;
 }
 
-.search-bar input:focus {
+.search-bar:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(91, 127, 255, 0.1);
+  box-shadow: 0 0 0 4px var(--accent-light);
+  background: var(--bg-secondary);
 }
 
-.search-bar input::placeholder {
-  color: var(--text-dim);
+.search-bar::placeholder {
+  color: var(--text-secondary);
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background: var(--accent);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
 }
 
 .btn:hover {
   background: var(--accent-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
 }
 
 .btn:active {
   transform: translateY(0);
 }
 
-.theme-btn {
-  background: var(--surface);
+.icon-btn {
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
+  padding: 12px 16px;
+  min-width: 48px;
   justify-content: center;
 }
 
-.theme-btn:hover {
-  background: var(--bg);
-  transform: translateY(-1px);
+.icon-btn:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.2);
 }
 
 .tabs-container {
-  background: var(--surface);
+  background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
-  padding: 8px 12px;
+  padding: 12px 20px;
   display: flex;
-  gap: 8px;
+  gap: 10px;
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: var(--accent) transparent;
 }
 
 .tabs-container::-webkit-scrollbar {
-  height: 4px;
+  height: 6px;
+}
+
+.tabs-container::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .tabs-container::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 2px;
+  background: var(--accent);
+  border-radius: 3px;
 }
 
 .tab {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  background: var(--bg);
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   white-space: nowrap;
-  font-size: 13px;
-  color: var(--text-dim);
-  transition: all 0.2s;
-  min-width: 120px;
-  max-width: 180px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 140px;
+  max-width: 200px;
+  font-weight: 500;
 }
 
 .tab:hover {
   border-color: var(--accent);
-  color: var(--text);
+  color: var(--text-primary);
+  background: var(--accent-light);
+  transform: translateY(-2px);
 }
 
 .tab.active {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  border-color: transparent;
   color: white;
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.4);
+}
+
+.tab-icon {
+  font-size: 12px;
 }
 
 .tab-title {
@@ -170,27 +217,31 @@ body {
 .tab-close {
   opacity: 0.6;
   cursor: pointer;
-  padding: 2px;
+  padding: 4px;
   display: flex;
   align-items: center;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .tab-close:hover {
   opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .new-tab {
   background: transparent;
-  border: 1px dashed var(--border);
-  color: var(--text-dim);
+  border: 2px dashed var(--border);
+  color: var(--text-secondary);
   min-width: auto;
-  padding: 8px 12px;
+  padding: 10px 16px;
 }
 
 .new-tab:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background: transparent;
+  background: var(--accent-light);
+  transform: translateY(-2px);
 }
 
 .content {
@@ -206,21 +257,38 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 24px;
+  padding: 40px;
 }
 
-.empty-state h1 {
-  font-size: 48px;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--accent) 0%, #8b93c1 100%);
+.cosmos-icon {
+  font-size: 80px;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.empty-state h1 {
+  font-size: 56px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
 }
 
 .empty-state p {
-  color: var(--text-dim);
-  font-size: 16px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  font-weight: 500;
 }
 
 iframe {
@@ -234,11 +302,6 @@ iframe.active {
   display: block;
 }
 
-.icon {
-  width: 16px;
-  height: 16px;
-}
-
 .modal-overlay {
   display: none;
   position: fixed;
@@ -246,10 +309,17 @@ iframe.active {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
   z-index: 1000;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-overlay.active {
@@ -257,77 +327,108 @@ iframe.active {
 }
 
 .modal {
-  background: var(--surface);
+  background: var(--bg-secondary);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  max-width: 500px;
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 550px;
   width: 90%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow);
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .modal h2 {
-  margin-bottom: 16px;
-  font-size: 20px;
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal h2 i {
+  color: var(--accent);
 }
 
 .modal-section {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 
 .modal-section h3 {
-  font-size: 14px;
-  color: var(--text-dim);
-  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .modal-input {
   width: 100%;
-  padding: 10px 12px;
-  background: var(--bg);
+  padding: 14px 16px;
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 14px;
-  margin-bottom: 8px;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 15px;
+  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s;
 }
 
 .modal-input:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-light);
 }
 
 .theme-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 12px;
 }
 
 .theme-option {
-  padding: 12px;
-  background: var(--bg);
+  padding: 16px;
+  background: var(--bg-tertiary);
   border: 2px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   text-align: center;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .theme-option:hover {
   border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.2);
 }
 
 .theme-option.active {
   border-color: var(--accent);
-  background: rgba(91, 127, 255, 0.1);
+  background: var(--accent-light);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.theme-option .theme-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.theme-option .theme-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
 }
 
 .modal-actions {
   display: flex;
-  gap: 8px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 28px;
 }
 
 .modal-actions .btn {
@@ -335,55 +436,72 @@ iframe.active {
 }
 
 .btn-secondary {
-  background: var(--bg);
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
+  color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  background: var(--surface);
+  background: var(--bg-primary);
+  border-color: var(--accent);
+  box-shadow: none;
 }
 
 .cloak-presets {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .preset-btn {
-  padding: 6px 12px;
-  background: var(--bg);
+  padding: 10px 16px;
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 12px;
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 13px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .preset-btn:hover {
   border-color: var(--accent);
-  background: rgba(91, 127, 255, 0.1);
+  background: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.preset-btn i {
+  font-size: 12px;
 }
 </style>
 </head>
 <body>
 <div class="header">
-  <div class="logo">nano.</div>
-  <div class="search-bar">
-    <input id="urlInput" type="text" placeholder="Search or enter URL..." />
+  <div class="logo">
+    <i class="fas fa-galaxy"></i>
+    <span>Cosmos</span>
   </div>
-  <button class="btn" onclick="go()">Go</button>
-  <button class="btn theme-btn" onclick="toggleTheme()">
-    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-    </svg>
+  <div class="search-container">
+    <div class="search-wrapper">
+      <i class="fas fa-search search-icon"></i>
+      <input id="urlInput" class="search-bar" type="text" placeholder="Search the cosmos or enter URL..." />
+    </div>
+  </div>
+  <button class="btn" onclick="go()">
+    <i class="fas fa-rocket"></i>
+    Launch
   </button>
-  <button class="btn theme-btn" onclick="openSettings()">
-    <svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M12 1v6m0 6v6M1 12h6m6 0h6"/>
-    </svg>
+  <button class="btn icon-btn" onclick="toggleTheme()">
+    <i class="fas fa-moon"></i>
+  </button>
+  <button class="btn icon-btn" onclick="openSettings()">
+    <i class="fas fa-cog"></i>
   </button>
 </div>
 
@@ -391,58 +509,73 @@ iframe.active {
 
 <div class="content" id="content">
   <div class="empty-state">
-    <h1>nano.</h1>
-    <p>Browse the internet securely and privately.</p>
+    <i class="fas fa-galaxy cosmos-icon"></i>
+    <h1>Cosmos Proxy</h1>
+    <p>Explore the infinite web securely and privately</p>
   </div>
 </div>
 
 <div class="modal-overlay" id="settingsModal">
   <div class="modal">
-    <h2>Settings</h2>
+    <h2><i class="fas fa-cog"></i> Settings</h2>
     
     <div class="modal-section">
-      <h3>Tab Cloak</h3>
+      <h3><i class="fas fa-mask"></i> Tab Cloak</h3>
       <div class="cloak-presets">
-        <button class="preset-btn" onclick="applyCloakPreset('Google', 'https://www.google.com/favicon.ico')">Google</button>
-        <button class="preset-btn" onclick="applyCloakPreset('Google Classroom', 'https://ssl.gstatic.com/classroom/favicon.png')">Classroom</button>
-        <button class="preset-btn" onclick="applyCloakPreset('Google Drive', 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png')">Drive</button>
-        <button class="preset-btn" onclick="applyCloakPreset('Canvas', 'https://www.instructure.com/favicon.ico')">Canvas</button>
+        <button class="preset-btn" onclick="applyCloakPreset('Google', 'https://www.google.com/favicon.ico')">
+          <i class="fab fa-google"></i> Google
+        </button>
+        <button class="preset-btn" onclick="applyCloakPreset('Google Classroom', 'https://ssl.gstatic.com/classroom/favicon.png')">
+          <i class="fas fa-chalkboard"></i> Classroom
+        </button>
+        <button class="preset-btn" onclick="applyCloakPreset('Google Drive', 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png')">
+          <i class="fab fa-google-drive"></i> Drive
+        </button>
+        <button class="preset-btn" onclick="applyCloakPreset('Canvas', 'https://www.instructure.com/favicon.ico')">
+          <i class="fas fa-graduation-cap"></i> Canvas
+        </button>
       </div>
       <input type="text" class="modal-input" id="cloakTitle" placeholder="Custom tab title (e.g., Google)" />
       <input type="text" class="modal-input" id="cloakIcon" placeholder="Custom favicon URL" />
     </div>
 
     <div class="modal-section">
-      <h3>Theme</h3>
+      <h3><i class="fas fa-palette"></i> Theme</h3>
       <div class="theme-grid">
         <div class="theme-option active" onclick="selectTheme('dark')" id="theme-dark">
-          <div style="font-weight: 500;">Dark</div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Default</div>
+          <div class="theme-name">Midnight</div>
+          <div class="theme-desc">Dark Blue</div>
         </div>
         <div class="theme-option" onclick="selectTheme('light')" id="theme-light">
-          <div style="font-weight: 500;">Light</div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Bright</div>
+          <div class="theme-name">Twilight</div>
+          <div class="theme-desc">Light Blue</div>
         </div>
         <div class="theme-option" onclick="selectTheme('midnight')" id="theme-midnight">
-          <div style="font-weight: 500;">Midnight</div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">OLED</div>
+          <div class="theme-name">Deep Night</div>
+          <div class="theme-desc">OLED Dark</div>
         </div>
         <div class="theme-option" onclick="selectTheme('amoled')" id="theme-amoled">
-          <div style="font-weight: 500;">Pure Black</div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">AMOLED</div>
+          <div class="theme-name">Void</div>
+          <div class="theme-desc">Pure Black</div>
         </div>
       </div>
     </div>
 
     <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeSettings()">Close</button>
-      <button class="btn" onclick="applySettings()">Apply</button>
+      <button class="btn btn-secondary" onclick="closeSettings()">
+        <i class="fas fa-times"></i> Cancel
+      </button>
+      <button class="btn" onclick="applySettings()">
+        <i class="fas fa-check"></i> Apply
+      </button>
     </div>
   </div>
 </div>
 
 <script>
+// CHANGE THIS TO YOUR CLOUDFLARE WORKER URL
 const workerBase = "https://proxy.ethantytang11.workers.dev/?url=";
+
 let tabs = [];
 let activeTab = -1;
 let currentTheme = 'dark';
@@ -517,51 +650,67 @@ function selectTheme(theme) {
   
   const themes = {
     dark: {
-      bg: '#0a0e27',
-      surface: '#141b3e',
-      text: '#e4e9ff',
-      textDim: '#8b93c1',
-      accent: '#5b7fff',
-      border: '#1f2847'
+      bgPrimary: '#0a0e1a',
+      bgSecondary: '#0f1419',
+      bgTertiary: '#1a1f2e',
+      textPrimary: '#e8edf4',
+      textSecondary: '#8b92a7',
+      accent: '#3b82f6',
+      accentHover: '#60a5fa',
+      accentLight: 'rgba(59, 130, 246, 0.1)',
+      border: 'rgba(59, 130, 246, 0.15)'
     },
     light: {
-      bg: '#f5f7fa',
-      surface: '#ffffff',
-      text: '#1a1f36',
-      textDim: '#697386',
-      accent: '#5b7fff',
-      border: '#e3e8ee'
+      bgPrimary: '#f0f4ff',
+      bgSecondary: '#ffffff',
+      bgTertiary: '#e8f0fe',
+      textPrimary: '#0f172a',
+      textSecondary: '#475569',
+      accent: '#2563eb',
+      accentHover: '#3b82f6',
+      accentLight: 'rgba(37, 99, 235, 0.1)',
+      border: 'rgba(37, 99, 235, 0.15)'
     },
     midnight: {
-      bg: '#000814',
-      surface: '#001d3d',
-      text: '#e8f1ff',
-      textDim: '#7d98ba',
-      accent: '#4a90e2',
-      border: '#003566'
+      bgPrimary: '#000000',
+      bgSecondary: '#0a0e1a',
+      bgTertiary: '#0f1419',
+      textPrimary: '#e8edf4',
+      textSecondary: '#7b8294',
+      accent: '#1d4ed8',
+      accentHover: '#2563eb',
+      accentLight: 'rgba(29, 78, 216, 0.1)',
+      border: 'rgba(29, 78, 216, 0.15)'
     },
     amoled: {
-      bg: '#000000',
-      surface: '#0a0a0a',
-      text: '#ffffff',
-      textDim: '#999999',
-      accent: '#bb86fc',
-      border: '#1f1f1f'
+      bgPrimary: '#000000',
+      bgSecondary: '#000000',
+      bgTertiary: '#0a0a0a',
+      textPrimary: '#ffffff',
+      textSecondary: '#999999',
+      accent: '#3b82f6',
+      accentHover: '#60a5fa',
+      accentLight: 'rgba(59, 130, 246, 0.1)',
+      border: 'rgba(59, 130, 246, 0.15)'
     }
   };
   
   const t = themes[theme];
-  root.style.setProperty('--bg', t.bg);
-  root.style.setProperty('--surface', t.surface);
-  root.style.setProperty('--text', t.text);
-  root.style.setProperty('--text-dim', t.textDim);
+  root.style.setProperty('--bg-primary', t.bgPrimary);
+  root.style.setProperty('--bg-secondary', t.bgSecondary);
+  root.style.setProperty('--bg-tertiary', t.bgTertiary);
+  root.style.setProperty('--text-primary', t.textPrimary);
+  root.style.setProperty('--text-secondary', t.textSecondary);
   root.style.setProperty('--accent', t.accent);
+  root.style.setProperty('--accent-hover', t.accentHover);
+  root.style.setProperty('--accent-light', t.accentLight);
   root.style.setProperty('--border', t.border);
 }
 
 function sanitizeUrl(url) {
   url = url.trim();
   if (!url) return '';
+  
   if (!url.match(/^https?:\/\//i)) {
     if (url.includes('.') && !url.includes(' ')) {
       url = 'https://' + url;
@@ -582,9 +731,22 @@ function go() {
 }
 
 function createTab(url) {
+  try {
+    new URL(url);
+  } catch (e) {
+    console.error('Invalid URL:', url);
+    alert('Invalid URL format');
+    return;
+  }
+  
   const iframe = document.createElement('iframe');
-  iframe.src = workerBase + encodeURIComponent(url);
+  const proxyUrl = workerBase + encodeURIComponent(url);
+  iframe.src = proxyUrl;
   iframe.className = 'active';
+  iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation-by-user-activation');
+  
+  console.log('Creating tab for:', url);
+  console.log('Proxy URL:', proxyUrl);
   
   const tab = {
     url: url,
@@ -639,15 +801,19 @@ function renderTabs() {
     el.className = 'tab' + (i === activeTab ? ' active' : '');
     el.onclick = () => switchTab(i);
     
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-globe tab-icon';
+    
     const title = document.createElement('span');
     title.className = 'tab-title';
     title.textContent = tab.title;
     
     const close = document.createElement('span');
     close.className = 'tab-close';
-    close.innerHTML = '✕';
+    close.innerHTML = '<i class="fas fa-times"></i>';
     close.onclick = (e) => closeTab(i, e);
     
+    el.appendChild(icon);
     el.appendChild(title);
     el.appendChild(close);
     bar.appendChild(el);
@@ -655,7 +821,7 @@ function renderTabs() {
   
   const newTab = document.createElement('div');
   newTab.className = 'tab new-tab';
-  newTab.textContent = '+';
+  newTab.innerHTML = '<i class="fas fa-plus"></i>';
   newTab.onclick = () => document.getElementById('urlInput').focus();
   bar.appendChild(newTab);
 }
@@ -683,9 +849,7 @@ document.getElementById('settingsModal').addEventListener('click', (e) => {
   if (e.target.id === 'settingsModal') closeSettings();
 });
 
-// Handle about:blank cloaking with keyboard shortcut
 document.addEventListener('keydown', (e) => {
-  // Ctrl/Cmd + Shift + X for about:blank cloak
   if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'X') {
     e.preventDefault();
     const win = window.open('about:blank', '_blank');
