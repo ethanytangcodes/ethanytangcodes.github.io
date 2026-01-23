@@ -2,151 +2,700 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Proxy</title>
+<title>nano.</title>
+<link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 <style>
-:root {
-  --bg: #0f1220;
-  --panel: #161a30;
-  --text: #e8eaff;
-  --accent: #6c7cff;
-}
-
-[data-theme="light"] {
-  --bg: #f4f6ff;
-  --panel: #ffffff;
-  --text: #111;
-  --accent: #4a63ff;
-}
-
-[data-theme="midnight"] {
-  --bg: #05070d;
-  --panel: #0b1020;
-  --text: #dbe0ff;
-  --accent: #8aa2ff;
-}
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #0a0e27;
+  --surface: #141b3e;
+  --text: #e4e9ff;
+  --text-dim: #8b93c1;
+  --accent: #5b7fff;
+  --accent-hover: #7a93ff;
+  --border: #1f2847;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-header {
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
   display: flex;
-  gap: 8px;
-  padding: 10px;
-  background: var(--panel);
+  gap: 10px;
+  align-items: center;
+  z-index: 100;
 }
 
-input {
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-right: 8px;
+}
+
+.search-bar {
   flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
+  position: relative;
+  max-width: 600px;
 }
 
-button, select {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: none;
+.search-bar input {
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search-bar input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(91, 127, 255, 0.1);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-dim);
+}
+
+.btn {
+  padding: 10px 20px;
   background: var(--accent);
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
-#tabs {
+.btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.theme-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
   display: flex;
-  gap: 6px;
-  padding: 6px;
-  background: var(--panel);
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-btn:hover {
+  background: var(--bg);
+  transform: translateY(-1px);
+}
+
+.tabs-container {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+  display: flex;
+  gap: 8px;
   overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.tabs-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tabs-container::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
 }
 
 .tab {
-  padding: 6px 10px;
-  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
   white-space: nowrap;
+  font-size: 13px;
+  color: var(--text-dim);
+  transition: all 0.2s;
+  min-width: 120px;
+  max-width: 180px;
+}
+
+.tab:hover {
+  border-color: var(--accent);
+  color: var(--text);
 }
 
 .tab.active {
   background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.tab-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tab-close {
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.tab-close:hover {
+  opacity: 1;
+}
+
+.new-tab {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--text-dim);
+  min-width: auto;
+  padding: 8px 12px;
+}
+
+.new-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.empty-state h1 {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent) 0%, #8b93c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.empty-state p {
+  color: var(--text-dim);
+  font-size: 16px;
 }
 
 iframe {
   flex: 1;
   border: none;
   background: white;
+  display: none;
+}
+
+iframe.active {
+  display: block;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.modal-section {
+  margin-bottom: 20px;
+}
+
+.modal-section h3 {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.theme-option {
+  padding: 12px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.theme-option:hover {
+  border-color: var(--accent);
+}
+
+.theme-option.active {
+  border-color: var(--accent);
+  background: rgba(91, 127, 255, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.modal-actions .btn {
+  flex: 1;
+}
+
+.btn-secondary {
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+}
+
+.cloak-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.preset-btn {
+  padding: 6px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.preset-btn:hover {
+  border-color: var(--accent);
+  background: rgba(91, 127, 255, 0.1);
 }
 </style>
 </head>
+<body>
+<div class="header">
+  <div class="logo">nano.</div>
+  <div class="search-bar">
+    <input id="urlInput" type="text" placeholder="Search or enter URL..." />
+  </div>
+  <button class="btn" onclick="go()">Go</button>
+  <button class="btn theme-btn" onclick="toggleTheme()">
+    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+    </svg>
+  </button>
+  <button class="btn theme-btn" onclick="openSettings()">
+    <svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 1v6m0 6v6M1 12h6m6 0h6"/>
+    </svg>
+  </button>
+</div>
 
-<body data-theme="dark">
-<header>
-  <input id="url" placeholder="Enter URL (https://example.com)" />
-  <button onclick="openTab()">Go</button>
-  <select onchange="setTheme(this.value)">
-    <option value="dark">Dark</option>
-    <option value="light">Light</option>
-    <option value="midnight">Midnight</option>
-  </select>
-</header>
+<div class="tabs-container" id="tabsBar"></div>
 
-<div id="tabs"></div>
-<iframe id="view"></iframe>
+<div class="content" id="content">
+  <div class="empty-state">
+    <h1>nano.</h1>
+    <p>Browse the internet securely and privately.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <h2>Settings</h2>
+    
+    <div class="modal-section">
+      <h3>Tab Cloak</h3>
+      <div class="cloak-presets">
+        <button class="preset-btn" onclick="applyCloakPreset('Google', 'https://www.google.com/favicon.ico')">Google</button>
+        <button class="preset-btn" onclick="applyCloakPreset('Google Classroom', 'https://ssl.gstatic.com/classroom/favicon.png')">Classroom</button>
+        <button class="preset-btn" onclick="applyCloakPreset('Google Drive', 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png')">Drive</button>
+        <button class="preset-btn" onclick="applyCloakPreset('Canvas', 'https://www.instructure.com/favicon.ico')">Canvas</button>
+      </div>
+      <input type="text" class="modal-input" id="cloakTitle" placeholder="Custom tab title (e.g., Google)" />
+      <input type="text" class="modal-input" id="cloakIcon" placeholder="Custom favicon URL" />
+    </div>
+
+    <div class="modal-section">
+      <h3>Theme</h3>
+      <div class="theme-grid">
+        <div class="theme-option active" onclick="selectTheme('dark')" id="theme-dark">
+          <div style="font-weight: 500;">Dark</div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Default</div>
+        </div>
+        <div class="theme-option" onclick="selectTheme('light')" id="theme-light">
+          <div style="font-weight: 500;">Light</div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Bright</div>
+        </div>
+        <div class="theme-option" onclick="selectTheme('midnight')" id="theme-midnight">
+          <div style="font-weight: 500;">Midnight</div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">OLED</div>
+        </div>
+        <div class="theme-option" onclick="selectTheme('amoled')" id="theme-amoled">
+          <div style="font-weight: 500;">Pure Black</div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">AMOLED</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeSettings()">Close</button>
+      <button class="btn" onclick="applySettings()">Apply</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const workerBase = "https://proxy.ethantytang11.workers.dev/?url=";
-
 let tabs = [];
-let active = -1;
+let activeTab = -1;
+let currentTheme = 'dark';
 
-function openTab() {
-  const url = document.getElementById("url").value.trim();
+// Load saved settings
+function loadSettings() {
+  const savedTitle = localStorage.getItem('cloakTitle');
+  const savedIcon = localStorage.getItem('cloakIcon');
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  
+  if (savedTitle) {
+    document.title = savedTitle;
+    document.getElementById('cloakTitle').value = savedTitle;
+  }
+  if (savedIcon) {
+    setFavicon(savedIcon);
+    document.getElementById('cloakIcon').value = savedIcon;
+  }
+  
+  selectTheme(savedTheme);
+}
+
+function setFavicon(url) {
+  let link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.href = url;
+}
+
+function applyCloakPreset(title, icon) {
+  document.getElementById('cloakTitle').value = title;
+  document.getElementById('cloakIcon').value = icon;
+}
+
+function applySettings() {
+  const title = document.getElementById('cloakTitle').value;
+  const icon = document.getElementById('cloakIcon').value;
+  
+  if (title) {
+    document.title = title;
+    localStorage.setItem('cloakTitle', title);
+  }
+  if (icon) {
+    setFavicon(icon);
+    localStorage.setItem('cloakIcon', icon);
+  }
+  
+  localStorage.setItem('theme', currentTheme);
+  closeSettings();
+}
+
+function openSettings() {
+  document.getElementById('settingsModal').classList.add('active');
+}
+
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('active');
+}
+
+function selectTheme(theme) {
+  currentTheme = theme;
+  
+  document.querySelectorAll('.theme-option').forEach(el => {
+    el.classList.remove('active');
+  });
+  document.getElementById('theme-' + theme).classList.add('active');
+  
+  const root = document.documentElement;
+  
+  const themes = {
+    dark: {
+      bg: '#0a0e27',
+      surface: '#141b3e',
+      text: '#e4e9ff',
+      textDim: '#8b93c1',
+      accent: '#5b7fff',
+      border: '#1f2847'
+    },
+    light: {
+      bg: '#f5f7fa',
+      surface: '#ffffff',
+      text: '#1a1f36',
+      textDim: '#697386',
+      accent: '#5b7fff',
+      border: '#e3e8ee'
+    },
+    midnight: {
+      bg: '#000814',
+      surface: '#001d3d',
+      text: '#e8f1ff',
+      textDim: '#7d98ba',
+      accent: '#4a90e2',
+      border: '#003566'
+    },
+    amoled: {
+      bg: '#000000',
+      surface: '#0a0a0a',
+      text: '#ffffff',
+      textDim: '#999999',
+      accent: '#bb86fc',
+      border: '#1f1f1f'
+    }
+  };
+  
+  const t = themes[theme];
+  root.style.setProperty('--bg', t.bg);
+  root.style.setProperty('--surface', t.surface);
+  root.style.setProperty('--text', t.text);
+  root.style.setProperty('--text-dim', t.textDim);
+  root.style.setProperty('--accent', t.accent);
+  root.style.setProperty('--border', t.border);
+}
+
+function sanitizeUrl(url) {
+  url = url.trim();
+  if (!url) return '';
+  if (!url.match(/^https?:\/\//i)) {
+    if (url.includes('.') && !url.includes(' ')) {
+      url = 'https://' + url;
+    } else {
+      url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
+    }
+  }
+  return url;
+}
+
+function go() {
+  const input = document.getElementById('urlInput');
+  const url = sanitizeUrl(input.value);
   if (!url) return;
+  
+  createTab(url);
+  input.value = '';
+}
 
-  tabs.push(url);
-  active = tabs.length - 1;
+function createTab(url) {
+  const iframe = document.createElement('iframe');
+  iframe.src = workerBase + encodeURIComponent(url);
+  iframe.className = 'active';
+  
+  const tab = {
+    url: url,
+    title: new URL(url).hostname,
+    iframe: iframe
+  };
+  
+  tabs.forEach(t => t.iframe.classList.remove('active'));
+  tabs.push(tab);
+  activeTab = tabs.length - 1;
+  
+  document.getElementById('content').appendChild(iframe);
   renderTabs();
-  load();
+  updateEmptyState();
+}
+
+function switchTab(index) {
+  if (index === activeTab) return;
+  
+  tabs.forEach((t, i) => {
+    t.iframe.classList.toggle('active', i === index);
+  });
+  
+  activeTab = index;
+  renderTabs();
+}
+
+function closeTab(index, e) {
+  e.stopPropagation();
+  
+  const tab = tabs[index];
+  tab.iframe.remove();
+  tabs.splice(index, 1);
+  
+  if (tabs.length === 0) {
+    activeTab = -1;
+  } else if (index <= activeTab) {
+    activeTab = Math.max(0, activeTab - 1);
+    tabs[activeTab].iframe.classList.add('active');
+  }
+  
+  renderTabs();
+  updateEmptyState();
 }
 
 function renderTabs() {
-  const tabBar = document.getElementById("tabs");
-  tabBar.innerHTML = "";
-  tabs.forEach((url, i) => {
-    const t = document.createElement("div");
-    t.className = "tab" + (i === active ? " active" : "");
-    t.textContent = new URL(url).hostname;
-    t.onclick = () => {
-      active = i;
-      renderTabs();
-      load();
-    };
-    tabBar.appendChild(t);
+  const bar = document.getElementById('tabsBar');
+  bar.innerHTML = '';
+  
+  tabs.forEach((tab, i) => {
+    const el = document.createElement('div');
+    el.className = 'tab' + (i === activeTab ? ' active' : '');
+    el.onclick = () => switchTab(i);
+    
+    const title = document.createElement('span');
+    title.className = 'tab-title';
+    title.textContent = tab.title;
+    
+    const close = document.createElement('span');
+    close.className = 'tab-close';
+    close.innerHTML = '✕';
+    close.onclick = (e) => closeTab(i, e);
+    
+    el.appendChild(title);
+    el.appendChild(close);
+    bar.appendChild(el);
   });
+  
+  const newTab = document.createElement('div');
+  newTab.className = 'tab new-tab';
+  newTab.textContent = '+';
+  newTab.onclick = () => document.getElementById('urlInput').focus();
+  bar.appendChild(newTab);
 }
 
-function load() {
-  document.getElementById("view").src =
-    workerBase + encodeURIComponent(tabs[active]);
+function updateEmptyState() {
+  const empty = document.querySelector('.empty-state');
+  if (empty) {
+    empty.style.display = tabs.length === 0 ? 'flex' : 'none';
+  }
 }
 
-function setTheme(t) {
-  document.body.setAttribute("data-theme", t);
+function toggleTheme() {
+  const themes = ['dark', 'light', 'midnight', 'amoled'];
+  const currentIndex = themes.indexOf(currentTheme);
+  const nextTheme = themes[(currentIndex + 1) % themes.length];
+  selectTheme(nextTheme);
+  localStorage.setItem('theme', nextTheme);
 }
+
+document.getElementById('urlInput').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') go();
+});
+
+document.getElementById('settingsModal').addEventListener('click', (e) => {
+  if (e.target.id === 'settingsModal') closeSettings();
+});
+
+// Handle about:blank cloaking with keyboard shortcut
+document.addEventListener('keydown', (e) => {
+  // Ctrl/Cmd + Shift + X for about:blank cloak
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'X') {
+    e.preventDefault();
+    const win = window.open('about:blank', '_blank');
+    win.document.write(document.documentElement.outerHTML);
+    win.document.close();
+    window.location.replace('https://www.google.com');
+  }
+});
+
+loadSettings();
 </script>
 </body>
 </html>
