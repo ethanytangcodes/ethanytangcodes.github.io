@@ -488,66 +488,6 @@ body.dark .cards-grid .card .gfiles-button:hover {
   }
 }
 
-/* === DO NOT CLICK POPUP === */
-.do-not-click-popup {
-  position: fixed;
-  inset: 0;
-  display: none;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 99999;
-  backdrop-filter: blur(6px);
-}
-
-.do-not-click-popup.show {
-  display: grid;
-}
-
-.do-not-click-content {
-  background: #1c1c1c;
-  color: #fff;
-  padding: 40px 50px;
-  border-radius: 20px;
-  max-width: 450px;
-  text-align: center;
-  animation: popIn 0.3s ease;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-}
-
-.do-not-click-content h2 {
-  margin-bottom: 20px;
-  font-size: 32px;
-  color: #ff6b6b;
-}
-
-.do-not-click-content p {
-  margin: 15px 0;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-#click-message {
-  font-weight: bold;
-  color: #4da7ff;
-  font-size: 20px;
-}
-
-#do-not-click-close {
-  margin-top: 25px;
-  padding: 12px 24px;
-  border: none;
-  background: #444;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.25s, transform 0.2s;
-}
-
-#do-not-click-close:hover {
-  background: #666;
-  transform: translateY(-2px);
-}
 
 body.dark .do-not-click-content {
   background: #0a0a0a;
